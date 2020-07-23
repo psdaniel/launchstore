@@ -123,3 +123,11 @@ const PhotosUpload = {
     }
 }
 
+const ImageGallery = {
+    setImage(e) {
+        const { target } = e
+
+        target.classList.add('active')
+    }
+}
+
