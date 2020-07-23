@@ -25,9 +25,37 @@
 <div class="item">
     <div>Descrição</div>
         <div>
-            <textarea name="description">
-                {{product.description}}
-            </textarea>
+            <textarea name="description">{{product.description}}</textarea>
+        </div>         
+    </div>
+
+<div class="item">
+    <div>Fotos</div>
+        <div>
+            <div id="photos-upload">
+                <input 
+                id="photos-input"
+                type="file" 
+                name="photos" 
+                multiple
+                accept="image/*"
+                onchange="PhotosUpload.handleFileInput(event)"
+            >
+            <p>Selecione até 6 fotos</p>
+
+            </div>
+            <div id="photos-preview">
+                {% if files %}
+                    {% for image in files %}
+                        <div class="photo" id="{{image.id}}">
+                            <img src="{{image.src}}" alt="{{image.name}}">
+                            <i class="material-icons"
+                            onclick="PhotosUpload.removeOldPhoto(event)">close</i>
+                        </div>
+                    {% endfor %}
+                    <input type="hidden" name="removed_files">
+                {% endif %}
+            </div>
         </div>         
     </div>
 
@@ -40,7 +68,8 @@
                 type="text" 
                 name="price"
                 placeholder="Preço do Produto"
-                value="{{ product.price }}">
+                value="{{ product.price }}"
+                onkeydown="Mask.apply(this, 'formatBRL')">
                 {# Faremos uma máscara de dinheiro/reais #}
                 
         </div>
@@ -61,7 +90,7 @@
         </div>         
     </div>
 
-{% if product.status %}
+{% if (product.status == '1') or (product.status == '0') %}
 <div class="item">
     <div>Disponível</div>
         <div>
