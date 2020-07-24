@@ -4,7 +4,6 @@ const Category = require('../models/Category')
 const Product = require('../models/Product')
 const File = require('../models/File')
 
-
 module.exports = {
     create(req, res) {
         //Pegar Categorias
@@ -25,20 +24,21 @@ module.exports = {
         for(key of keys) {
             if (req.body[key] == "") {
                 return res.send('Please, fill all the fields!') 
+            }
         }
-    }
 
-    if (req.files.length == 0)
-        return res.send('Please, send at least one image')
+        if (req.files.length == 0)
+            return res.send('Please, send at least one image')
 
 
-    let results = await Product.create(req.body)
-    const productId = results.rows[0].id
+        let results = await Product.create(req.body)
+        const productId = results.rows[0].id
 
-    const filesPromise = req.files.map(file => File.create({...file, product_id: productId}))
-    await Promise.all(filesPromise)
+        const filesPromise = req.files.map(file => File.create({...file, product_id: productId}))
+        await Promise.all(filesPromise)
+            .catch(err => console.log(err))
 
-    return res.redirect(`products/${productId}/edit`)
+        return res.redirect(`products/${productId}/edit`)
     
     },
     async show(req, res) {
@@ -63,7 +63,6 @@ module.exports = {
             ...file,
             src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
         }))
-
 
         return res.render("products/show", {product, files})
     },
