@@ -21,6 +21,4 @@ routes.get('/accounts', function(req, res) {
     return res.redirect("/users/register")
 })
 
-
-
 module.exports = routes
