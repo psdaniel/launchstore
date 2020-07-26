@@ -3,6 +3,7 @@ const { formatCep, formatCpfCnpj } = require('../../lib/utils')
 
 module.exports = {
     registerForm(req, res) {
+        const { user } = req
         return res.render("user/register", {user})
     },
     async show(req,res) {
