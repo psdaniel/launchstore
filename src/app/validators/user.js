@@ -83,7 +83,7 @@ async function update(req, res, next) {
 
     req.user = user
     
-    next()
+    next
 
 }
 
