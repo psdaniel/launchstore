@@ -35,8 +35,6 @@ async function post(req, res, next) {
             error: 'A senha e a repetição da senha estão incorretas.'
         })
 
-    return res.send('Passou!')
-
     next()
 }
 
