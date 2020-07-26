@@ -13,5 +13,6 @@ function isLoggedRedirectToUsers(req, res, next) {
 }
 
 module.exports = {
-    onlyUsers
+    onlyUsers,
+    isLoggedRedirectToUsers
 }
