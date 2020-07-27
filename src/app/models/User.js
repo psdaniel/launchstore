@@ -7,7 +7,7 @@ const Base = require('./Base')
 
 Base.init({table: 'users'})
 
-module.exports = {
+const User = {
     ...Base,
     async create(data) {
         try {
@@ -91,3 +91,4 @@ module.exports = {
     }
         
 }
+module.exports = User
