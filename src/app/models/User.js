@@ -1,26 +1,14 @@
 const db = require('../../config/db')
 const { hash } = require('bcryptjs')
 const fs = require('fs')
+
 const Product = require('../models/Product')
+const Base = require('./Base')
+
+Base.init({table: 'users'})
 
 module.exports = {
-    async findOne(filters) {
-        let query = "SELECT * FROM users"
-
-        Object.keys(filters).map(key => {
-            query = `${query}
-            ${key}
-            `
-
-            Object.keys(filters[key]).map(field =>{
-                query = `${query} ${field} = '${filters[key][field]}'`
-            })
-        })
-
-        const results = await db.query(query)
-
-        return results.rows[0]
-    },
+    ...Base,
     async create(data) {
         try {
             const query = `
@@ -76,7 +64,7 @@ module.exports = {
     },
     async delete(id) {
         //pegar todos os produtos
-        let results = await Product.all()
+        let results = await db.query("SELECT * FROM products WHERE user_id = $1", [id])
         const products = results.rows
         // dos produtos, pegar todas as imagens
         const allFilesPromise = products.map(product => 
@@ -90,7 +78,13 @@ module.exports = {
 
         // remover as imagens da pasta public
         promiseResults.map(results => {
-            results.rows.map(file => fs.unlinkSync(file.path)) 
+            results.rows.map(file => {
+                try {
+                    fs.unlinkSync(file.path)
+                } catch(err) {
+                    console.log(err)
+                }
+            })  
         })
 
 
