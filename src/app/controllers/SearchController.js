@@ -23,9 +23,10 @@ module.exports = {
 
             let products = await Product.search(params)
 
+            //ele pega as imagens do search aqui
             async function getImage(productId) {
                 let files = await Product.files(productId)
-                cfiles = files.map(file => `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
+                files = files.map(file => `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
     
                 return files[0]
             }
