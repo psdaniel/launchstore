@@ -62,6 +62,10 @@
 
                 {% endif %}
             </div>
+
+            {% if (session.userId) and (product.user_id == session.userId) %}
+                <p class="unavailable">Você é o vendedor!</p>
+            {%else%}
             <div class="buy">
                 {% if product.status == 0 %}
                 <p class="unavailable">Indisponível</p>
@@ -76,6 +80,7 @@
                 {% endif%}
             
             </div>
+            {%endif%}
         </div>
 
     </div>

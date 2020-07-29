@@ -24,7 +24,7 @@ module.exports = {
     async post(req, res) {
         try {
         // pegar os dados do produto
-        const product = await LoadProductService.load('product', {where: {
+        const product = await LoadProductsService.load('product', {where: {
             id: req.body.id
         }})
 
