@@ -93,41 +93,4 @@ const Cart = {
     }
 }
 
-const product = {
-    id: 1,
-    price: 199,
-    quantity: 2
-}
-
-
-const product2 = {
-    id: 2,
-    price: 199,
-    quantity: 1
-}
-
-console.log('add first cart item')
-let oldCart = Cart.init().addOne(product)
-console.log(oldCart)
-
-console.log('add second cart item')
-oldCart = Cart.init(oldCart).addOne(product)
-console.log(oldCart)
-
-console.log('add third cart item')
-oldCart = Cart.init().addOne(product)
-console.log(oldCart)
-
-console.log('remove one item')
-oldCart = Cart.init().removeOne(product.id)
-console.log(oldCart)
-
-console.log('remove one item')
-oldCart = Cart.init().removeOne(product.id)
-console.log(oldCart)
-
-// adicionar 1 item ao carrinho
-// remover 1 item do carrinho
-// deletar todo o item
-
 module.exports = Cart
