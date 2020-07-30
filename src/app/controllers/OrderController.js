@@ -1,6 +1,6 @@
 const LoadProductsService = require('../services/LoadProductService')
 const User = require('../models/User')
-criaçconst Order = require('../models/Order')
+const Order = require('../models/Order')
 
 
 const Cart = require('../../lib/cart')
