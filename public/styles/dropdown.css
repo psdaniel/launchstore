@@ -30,6 +30,8 @@ ul.dropdown {
     visibility: hidden;
 
     transition: all 200ms;
+
+    z-index: 1;
 }
 
 ul.dropdown li a,
@@ -48,13 +50,14 @@ ul.dropdown li button {
     border-radius: 4px;
 }
 
-ul.dropdown li:hover a,
+ul.dropdown li:hover,
 ul.dropdown li:hover button {
     background-color: #eee;
 }
 
 /* actions */
-.actions.dropdown-container {
+.actions.dropdown-container,
+ul.dropdown button {
     display: flex;
     align-items: center;
     height: 48px;
@@ -62,6 +65,7 @@ ul.dropdown li:hover button {
     padding: 0 16px;
 }
 
-.actions.dropdown-container:hover {
+.actions.dropdown-container,
+ul.dropdown button {
     background-color: white;
 }
