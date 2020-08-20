@@ -21,7 +21,7 @@ module.exports = {
         const { user } = req
 
         user.cpf_cnpj = formatCpfCnpj(user.cpf_cnpj)
-        user.cep = formatCpfCnpj(user.cep)
+        user.cep = formatCep(user.cep)
 
         return res.render('user/index', { user })
     } catch(error) {
@@ -55,7 +55,7 @@ module.exports = {
     async update(req, res) {
         try {
             const { user } = req
-            let { name, email, cpf_cnpj, cep, address } = req.
+            let { name, email, cpf_cnpj, cep, address } = req.body
             
             cpf_cnpj = cpf_cnpj.replace(/\D/g, "")
             cep = cep.replace(/\D/g, "")
